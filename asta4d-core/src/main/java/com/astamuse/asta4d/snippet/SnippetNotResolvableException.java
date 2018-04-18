@@ -17,30 +17,30 @@
 
 package com.astamuse.asta4d.snippet;
 
-public class SnippetNotResovlableException extends Exception {
+public class SnippetNotResolvableException extends Exception {
 
     /**
      * 
      */
     private static final long serialVersionUID = 1639030204768997259L;
 
-    public SnippetNotResovlableException() {
+    public SnippetNotResolvableException() {
         super();
     }
 
-    public SnippetNotResovlableException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public SnippetNotResolvableException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
-    public SnippetNotResovlableException(String message, Throwable cause) {
+    public SnippetNotResolvableException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public SnippetNotResovlableException(String message) {
+    public SnippetNotResolvableException(String message) {
         super(message);
     }
 
-    public SnippetNotResovlableException(Throwable cause) {
+    public SnippetNotResolvableException(Throwable cause) {
         super(cause);
     }
 

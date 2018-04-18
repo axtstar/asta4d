@@ -45,7 +45,7 @@ public class DefaultSnippetInvoker implements SnippetInvoker {
     }
 
     @Override
-    public Renderer invoke(String renderDeclaration) throws SnippetNotResovlableException, SnippetInvokeException {
+    public Renderer invoke(String renderDeclaration) throws SnippetNotResolvableException, SnippetInvokeException {
         Configuration conf = Configuration.getConfiguration();
 
         SnippetExtractor extractor = conf.getSnippetExtractor();

@@ -47,7 +47,7 @@ import com.astamuse.asta4d.render.transformer.RendererTransformer;
 import com.astamuse.asta4d.render.transformer.Transformer;
 import com.astamuse.asta4d.snippet.SnippetInvokeException;
 import com.astamuse.asta4d.snippet.SnippetInvoker;
-import com.astamuse.asta4d.snippet.SnippetNotResovlableException;
+import com.astamuse.asta4d.snippet.SnippetNotResolvableException;
 import com.astamuse.asta4d.template.TemplateException;
 import com.astamuse.asta4d.template.TemplateNotFoundException;
 import com.astamuse.asta4d.template.TemplateUtil;
@@ -89,11 +89,11 @@ public class RenderUtil {
      * 
      * @param doc
      *            the Document to apply snippets
-     * @throws SnippetNotResovlableException
+     * @throws SnippetNotResolvableException
      * @throws SnippetInvokeException
      * @throws TemplateException
      */
-    public final static void applySnippets(Document doc) throws SnippetNotResovlableException, SnippetInvokeException, TemplateException,
+    public final static void applySnippets(Document doc) throws SnippetNotResolvableException, SnippetInvokeException, TemplateException,
             TemplateNotFoundException {
         if (doc == null) {
             return;
@@ -171,7 +171,7 @@ public class RenderUtil {
                         renderer = invoker.invoke(renderDeclaration);
                         applySnippetResultToElement(doc, refId, element, renderTarget, renderer);
                     }
-                } catch (SnippetNotResovlableException | SnippetInvokeException e) {
+                } catch (SnippetNotResolvableException | SnippetInvokeException e) {
                     throw e;
                 } catch (Exception e) {
                     SnippetInvokeException se = new SnippetInvokeException("Error occured when executing rendering on [" +

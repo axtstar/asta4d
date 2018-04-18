@@ -29,7 +29,7 @@ import com.astamuse.asta4d.Context;
 import com.astamuse.asta4d.render.Renderer;
 import com.astamuse.asta4d.snippet.SnippetDeclarationInfo;
 import com.astamuse.asta4d.snippet.SnippetExcecutionInfo;
-import com.astamuse.asta4d.snippet.SnippetNotResovlableException;
+import com.astamuse.asta4d.snippet.SnippetNotResolvableException;
 import com.astamuse.asta4d.util.MultiSearchPathResourceLoader;
 
 public class DefaultSnippetResolver extends MultiSearchPathResourceLoader<Object> implements SnippetResolver {
@@ -39,13 +39,13 @@ public class DefaultSnippetResolver extends MultiSearchPathResourceLoader<Object
     private final static ConcurrentHashMap<SnippetDeclarationInfo, Method> MethodCache = new ConcurrentHashMap<>();
 
     @Override
-    public SnippetExcecutionInfo resloveSnippet(SnippetDeclarationInfo declaration) throws SnippetNotResovlableException {
+    public SnippetExcecutionInfo resloveSnippet(SnippetDeclarationInfo declaration) throws SnippetNotResolvableException {
         Object instance = retrieveInstance(declaration);
         Method method = retrieveMethod(declaration);
         return new SnippetExcecutionInfo(declaration, instance, method);
     }
 
-    protected Object retrieveInstance(SnippetDeclarationInfo declaration) throws SnippetNotResovlableException {
+    protected Object retrieveInstance(SnippetDeclarationInfo declaration) throws SnippetNotResolvableException {
         String snippetName = declaration.getSnippetName();
         Map<String, Object> instanceMap = getCacheMap(InstanceMapCacheKey);
         Object instance = instanceMap.get(snippetName);
@@ -56,7 +56,7 @@ public class DefaultSnippetResolver extends MultiSearchPathResourceLoader<Object
         return instance;
     }
 
-    protected Object createInstance(String snippetName) throws SnippetNotResovlableException {
+    protected Object createInstance(String snippetName) throws SnippetNotResolvableException {
         try {
             Object instance = super.searchResource(".", snippetName);
             if (instance == null) {
@@ -64,7 +64,7 @@ public class DefaultSnippetResolver extends MultiSearchPathResourceLoader<Object
             }
             return instance;
         } catch (Exception ex) {
-            throw new SnippetNotResovlableException(String.format("Snippet [%s] resolve failed.", snippetName), ex);
+            throw new SnippetNotResolvableException(String.format("Snippet [%s] resolve failed.", snippetName), ex);
         }
     }
 
@@ -83,13 +83,13 @@ public class DefaultSnippetResolver extends MultiSearchPathResourceLoader<Object
         }
     }
 
-    protected Method retrieveMethod(SnippetDeclarationInfo declaration) throws SnippetNotResovlableException {
+    protected Method retrieveMethod(SnippetDeclarationInfo declaration) throws SnippetNotResolvableException {
         Method m = Configuration.getConfiguration().isCacheEnable() ? MethodCache.get(declaration) : null;
         if (m == null) {
             Object instance = retrieveInstance(declaration);
             m = findSnippetMethod(instance, declaration.getSnippetHandler());
             if (m == null) {
-                throw new SnippetNotResovlableException("Snippet handler cannot be resolved for " + declaration);
+                throw new SnippetNotResolvableException("Snippet handler cannot be resolved for " + declaration);
             }
             // we do not mind that the exited method instance would be
             // overrode in multi-threads environment
