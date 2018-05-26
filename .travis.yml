@@ -27,5 +27,6 @@ script:
   - mvn -version
   - cd asta4d-core
   - mvn test
-  - cd ../asta4d-web
+  - cd ..
+  - cd asta4d-web
   - mvn test
